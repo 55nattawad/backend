@@ -1,0 +1,32 @@
+/* styles.css */
+
+.bg-light-purple {
+  background-color: #f3e6ff; /* สีพื้นหลังม่วงอ่อน */
+}
+
+.bg-purple-dark {
+  background-color: #6f42c1; /* สีม่วงเข้ม */
+}
+
+.card-header {
+  background-color: #6f42c1; /* สีม่วงเข้ม */
+}
+
+.btn-signup {
+  background-color: #8a4baf; /* สีม่วงอ่อนสำหรับปุ่ม */
+  color: white;
+  border: none;
+}
+
+.btn-signup:hover {
+  background-color: #6f42c1; /* สีม่วงเข้มเมื่อเลื่อนเมาส์ */
+}
+
+.alert-info {
+  background-color: #d4baff; /* สีม่วงอ่อนสำหรับข้อความแจ้งเตือน */
+  border-color: #b29dff;
+}
+
+footer {
+  background-color: #6f42c1; /* สีม่วงเข้ม */
+}
