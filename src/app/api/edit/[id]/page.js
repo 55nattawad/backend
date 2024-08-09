@@ -159,7 +159,7 @@ export default function EditPage({ params }) {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* FooTer */}
       <footer className="bg-purple-dark text-white text-center py-3">
         <p className="mb-0">© Nuttawad | HaHaHa <i className="bi bi-copyright"></i></p>
       </footer>
