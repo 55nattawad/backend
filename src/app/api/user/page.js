@@ -31,7 +31,7 @@ export default function Page() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
-        const res = await fetch(`http://localhost:3000/api/users/${id}`, {
+        const res = await fetch(`https://backend-eight-self.vercel.app/api/users/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

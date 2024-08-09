@@ -15,7 +15,7 @@ export default function SignUpPage() {
     e.preventDefault();
     setMessage(''); // Clear previous message
 
-    const res = await fetch('http://localhost:3000/api/users', {
+    const res = await fetch('https://backend-eight-self.vercel.app/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
