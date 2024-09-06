@@ -1,0 +1,48 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #f3e5f5; /* สีม่วงอ่อนสำหรับพื้นหลังของทั้งหน้า */
+}
+
+.container {
+  margin-top: 1rem;
+}
+
+header, footer {
+  background-color: #6f42c1; /* สีม่วงเข้มสำหรับ header และ footer */
+}
+
+.card {
+  border: 1px solid #d1c4e9; /* สีม่วงอ่อนสำหรับขอบของการ์ด */
+}
+
+.card-header {
+  background-color: #b39ddb; /* สีม่วงเข้มสำหรับ header ของการ์ด */
+}
+
+.btn-warning {
+  background-color: #d1c4e9; /* สีม่วงอ่อนสำหรับปุ่ม Edit */
+  border-color: #b39ddb;
+}
+
+.btn-warning:hover {
+  background-color: #b39ddb;
+  border-color: #a2a2a2;
+}
+
+.btn-danger {
+  background-color: #d1c4e9; /* สีม่วงอ่อนสำหรับปุ่ม Delete */
+  border-color: #b39ddb;
+  color: #000; /* สีตัวหนังสือเป็นสีดำ */
+}
+
+.btn-danger:hover {
+  background-color: #b39ddb;
+  border-color: #a2a2a2;
+  color: #000; /* สีตัวหนังสือเป็นสีดำเมื่อ hover */
+}

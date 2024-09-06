@@ -1,6 +1,7 @@
 import { Client } from 'pg';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
+
 dotenv.config();
 
 const client = new Client({
@@ -17,17 +18,17 @@ export async function GET() {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
     });
   } catch (error) {
     console.error('GET error:', error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
       status: 500,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
     });
   }
@@ -49,7 +50,7 @@ export async function POST(request) {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
     });
   } catch (error) {
@@ -59,7 +60,7 @@ export async function POST(request) {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
     });
   }
@@ -68,65 +69,60 @@ export async function POST(request) {
 //-------------------------------------------------------------------------------------
 export async function PUT(request) {
   try {
-    const { id, firstname, lastname } = await request.json();
-    const res = await client.query(
-      'UPDATE tbl_users SET firstname = $1, lastname = $2 WHERE id = $3 RETURNING *',
-      [firstname, lastname, id]
-    );
-    if (res.rows.length === 0) {
-      return new Response(JSON.stringify({ error: 'User not found' }), {
-        status: 404,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          "Content-Type": "application/json"
-        },
-      });
-    }
-    return new Response(JSON.stringify(res.rows[0]), {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        "Content-Type": "application/json"
-      },
-    });
-  } catch (error) {
-    console.error('PUT error:', error);
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
-      status: 500,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        "Content-Type": "application/json"
-      },
-    });
+  const { id, firstname, lastname, username, password } = await request.json();
+  const res = await client.query('UPDATE tbl_users SET firstname = $1, lastname = $2, username = $3, password = $4 WHERE id = $5 RETURNING *', [firstname, lastname, username, password, id]);
+  if (res.rows.length === 0) {
+  return new Response(JSON.stringify({ error: 'User not found' }), {
+  status: 404,
+  headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+  });
   }
-}
+  return new Response(JSON.stringify(res.rows[0]), {
+  status: 200,
+  headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+  });
+  } catch (error) {
+  console.error(error);
+  return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+  status: 500,
+  headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+  });
+  }
+  }
+
 
 //-------------------------------------------------------------------------------------
 export async function DELETE(request) {
   try {
     const { id } = await request.json();
-    console.log("Deleting user with ID:", id); // เพิ่มการ log เพื่อตรวจสอบ
+    console.log('Deleting user with ID:', id); // เพิ่มการ log เพื่อตรวจสอบ
     const res = await client.query('DELETE FROM tbl_users WHERE id = $1 RETURNING *', [id]);
 
     if (res.rows.length === 0) {
       return new Response(JSON.stringify({ error: 'User not found' }), {
         status: 404,
-        headers: { 'Access-Control-Allow-Origin': '*', "Content-Type": "application/json" },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
       });
     }
 
     return new Response(JSON.stringify(res.rows[0]), {
       status: 200,
-      headers: { 'Access-Control-Allow-Origin': '*', "Content-Type": "application/json" },
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
     });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('DELETE error:', error);
     return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
       status: 500,
-      headers: { 'Access-Control-Allow-Origin': '*', "Content-Type": "application/json" },
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
     });
   }
 }
